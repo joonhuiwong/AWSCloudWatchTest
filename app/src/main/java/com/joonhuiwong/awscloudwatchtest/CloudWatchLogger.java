@@ -1,4 +1,4 @@
-package com.cst.awscloudwatchtest;
+package com.joonhuiwong.awscloudwatchtest;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
@@ -70,24 +70,24 @@ public class CloudWatchLogger {
                 logStreamsRequest.setDescending(true);
                 //logStreamsRequest.setLogStreamNamePrefix("");
 
-                /**
-                 * WARNING:
-                 * Depending on how you use structure the stream names, you might have to change up your
-                 * DescribeLogStreamsRequest object/param.
-                 *
-                 * The request can only return up to 50 results, and WE MUST have the logStream we are
-                 * intending on logging to in the list.
-                 *
-                 * We can use settings like orderBy or Prefixes to filter out irrelevant StreamNames
-                 * in the case of having a streamName naming structure like "20220420_terminalCode_error"
-                 *
-                 * We can easily use "20220420_terminalCode" as the prefix filter. Hopefully we do not have
-                 * more than 50 streamNames with that filter still!
-                 *
-                 * If you are intending on 1 time pushes/logging without possibility of appending (like API Gateway's
-                 * automatic logging), then you can exclude the token from the PutLogEventsRequest.
-                 *
-                 * You must have the uploadSequenceToken of the logStream ONLY when you want to append to it.
+                /*
+                  WARNING:
+                  Depending on how you use structure the stream names, you might have to change up your
+                  DescribeLogStreamsRequest object/param.
+
+                  The request can only return up to 50 results, and WE MUST have the logStream we are
+                  intending on logging to in the list.
+
+                  We can use settings like orderBy or Prefixes to filter out irrelevant StreamNames
+                  in the case of having a streamName naming structure like "20220420_terminalCode_error"
+
+                  We can easily use "20220420_terminalCode" as the prefix filter. Hopefully we do not have
+                  more than 50 streamNames with that filter still!
+
+                  If you are intending on 1 time pushes/logging without possibility of appending (like API Gateway's
+                  automatic logging), then you can exclude the token from the PutLogEventsRequest.
+
+                  You must have the uploadSequenceToken of the logStream ONLY when you want to append to it.
                  */
 
                 List<LogStream> logStreamList = client.describeLogStreams(logStreamsRequest).getLogStreams();
