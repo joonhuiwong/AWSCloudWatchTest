@@ -56,8 +56,8 @@ You can probably see how it is implemented in my code. Here's the rough idea:
 - Holds a single persistent CloudWatchLogger object in the MainApplication so we can reuse it.
 - In Application object so it is not randomly killed or paused like Activity objects.
 - Made a log() method just to make the call A BIT shorter (still long)
-  -- MainApplication.getInstance().log("TestGroup", "TestStream", "Test Log"); 
-  -- MainApplication.getInstance().getCloudWatchLogger().log("TestGroup", "TestStream", "Test Log");
+  - ```MainApplication.getInstance().log("TestGroup", "TestStream", "Test Log"); ```
+  - ```MainApplication.getInstance().getCloudWatchLogger().log("TestGroup", "TestStream", "Test Log");```
 
  ### MainActivity.java
 - Just call from anywhere to log anything.
