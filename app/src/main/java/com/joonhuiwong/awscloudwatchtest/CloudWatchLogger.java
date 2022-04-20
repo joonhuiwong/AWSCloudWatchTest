@@ -100,16 +100,14 @@ public class CloudWatchLogger {
                     }
                 }
 
+                PutLogEventsRequest putLogEventsRequest = new PutLogEventsRequest();
+                putLogEventsRequest.setLogGroupName(logGroupName);
+                putLogEventsRequest.setLogStreamName(logStreamName);
+                putLogEventsRequest.setLogEvents(logEvents);
                 if (token != null) {
-                    PutLogEventsRequest putLogEventsRequest = new PutLogEventsRequest();
-                    putLogEventsRequest.setLogGroupName(logGroupName);
-                    putLogEventsRequest.setLogStreamName(logStreamName);
-                    putLogEventsRequest.setLogEvents(logEvents);
-
                     putLogEventsRequest.setSequenceToken(token);
-
-                    putLogEventsResult = client.putLogEvents(putLogEventsRequest);
                 }
+                putLogEventsResult = client.putLogEvents(putLogEventsRequest);
             });
             t.start();
             t.join();
